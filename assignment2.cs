@@ -23,7 +23,17 @@ namespace FileTypeReport
         // Human readable byte size
         private static string FormatByteSize(long byteSize)
         {
-            // TODO: Fill in your code here.
+            string[] units = { "B", "kB", "MB", "GB", "TB", "PB", "EB", "ZB" };
+            double size = byteSize;
+            int index = 0;
+
+            while (size >= 1000 && index < units.Length - 1)
+            {
+                size /= 1000;
+                index++;
+            }
+
+            return $"{size:F2} {units[index]}";
         }
 
         // Create an HTML report file
